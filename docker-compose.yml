@@ -1,0 +1,18 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+      - MYSQL_DATABASE=youphptube
+      - MYSQL_USER=youphptubeuser
+      - MYSQL_PASSWORD=youphptubepassword
+    volumes:
+      - ./mysql-datadir:/var/lib/mysql
+
+  youphptube:
+    image: furiousgeorge/youphptube:latest
+    volumes:
+        - ./videos:/var/www/html/videos
+    ports:
+      - "8080:80"
